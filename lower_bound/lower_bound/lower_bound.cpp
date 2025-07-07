@@ -1,20 +1,47 @@
-// lower_bound.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include <algorithm>
+#include <vector>
+#include <random>
+
+using namespace std;
 
 int main()
 {
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dist(0, 100);
+
     std::cout << "Hello World!\n";
+
+    vector<int> v;
+    for (int i = 0; i < 20; ++i) v.push_back(dist(gen));
+
+    int loverBound = 65;
+    sort(v.begin(), v.end());
+
+    auto it = lower_bound(v.begin(), v.end(), loverBound);
+
+
+    if (it != v.end()) {
+        
+        cout << "last element " << *it << " then its possition in vector: " << (it - v.begin())+1 << '\n';
+    }
+    else         cout << "last element " << (*(it - 1)) << " then its possition in vector: " << (it - v.begin()+1) << '\n';
+
+    puts("");
+
+    while (it != v.end()) cout << *it++ << " ";
+
+    puts("\n");
+
+    for (int i : v) cout << i << " ";
+    puts("");
+
+
+    it = upper_bound(v.begin(), v.end(), loverBound);
+    puts("\n");
+    cout << "upper bound " << *it << " and pos in vec: " << (it - v.begin()) + 1 << '\n';
+
+    while (it > v.begin()) cout << *(--it)<< ' ';
+
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
