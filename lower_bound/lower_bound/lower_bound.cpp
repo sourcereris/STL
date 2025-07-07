@@ -4,6 +4,7 @@
 #include <random>
 
 using namespace std;
+void testing();
 
 int main()
 {
@@ -44,4 +45,21 @@ int main()
 
     while (it > v.begin()) cout << *(--it)<< ' ';
 
+    puts("\n");
+    testing();
+}
+
+void testing() {
+    cout << "...................Testing...................\n";
+
+    vector<int> v = { 1, 2, 2, 6, 8, 12, 15 };
+
+    vector<int>::iterator it = lower_bound(v.begin(), v.end(), 5);
+    for (int i : v) cout << i << ' ';
+    puts("\n");
+
+    cout << *it << " \n";
+    cout << (it - v.begin()) << '\n';
+
+    cout << "\n...................Testing...................";
 }
