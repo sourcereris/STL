@@ -17,10 +17,10 @@ int main()
     vector<int> v;
     for (int i = 0; i < 20; ++i) v.push_back(dist(gen));
 
-    int loverBound = 65;
+    int lowerBound = 65;
     sort(v.begin(), v.end());
 
-    auto it = lower_bound(v.begin(), v.end(), loverBound);
+    auto it = lower_bound(v.begin(), v.end(), lowerBound);
 
 
     if (it != v.end()) {
@@ -39,9 +39,12 @@ int main()
     puts("");
 
 
-    it = upper_bound(v.begin(), v.end(), loverBound);
+    it = upper_bound(v.begin(), v.end(), lowerBound);
     puts("\n");
-    cout << "upper bound " << *it << " and pos in vec: " << (it - v.begin()) + 1 << '\n';
+    if (it != v.end())
+        cout << "upper bound " << *it << " and pos in vec: " << (it - v.begin()) + 1 << '\n';
+    else
+        cout << "upper bound not found" << '\n';
 
     while (it > v.begin()) cout << *(--it)<< ' ';
 
